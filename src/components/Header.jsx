@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <header className="bg-white py-2 px-4 flex justify-between items-center shadow-md">
       <Link to="/" className="text-black no-underline">
-        <h1 className="m-0">BlinkBlog</h1>
+        <h1 className="m-0 text-3xl font-bold">ArweaveQuery</h1>
       </Link>
       <div>
         {navLinks.map((link) => {
