@@ -16,6 +16,7 @@
     "@arweave-wallet-kit/react": "^0.0.1-beta.3",
     "@arweave-wallet-kit/styles": "^0.0.1-beta.3",
     "@fontsource/inter": "^5.0.18",
+    "@permaweb/aoconnect": "^0.0.56",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.10",
     "mini-svg-data-uri": "^1.4.4",

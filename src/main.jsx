@@ -7,12 +7,28 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import {ThemeProvider} from "./components/theme-provider.jsx"
 import "@fontsource/inter";
+import Question from "./pages/Question.jsx";
+import View from "./pages/View.jsx";
+import Create from "./pages/Create.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
   },
+  {
+    path: "/app",
+    element: <Question />,
+  },
+  {
+    path: "/view",
+    element: <View />,
+  },
+  {
+    path: "/create",
+    element: <Create />,
+  },
+
   
   
 ]);
