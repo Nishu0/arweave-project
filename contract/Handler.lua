@@ -12,13 +12,13 @@ Handlers.add("BlinkBlog.Register",
       print("User already registered")
       return "Already Registered"
     end
-    local Name = msg.Name or 'anon'
+    local Name = msg.Name or 'user'
     dbAdmin:exec(string.format([[
       INSERT INTO Authors (PID, Name) VALUES ("%s", "%s");
     ]], msg.From, Name))
     Send({
       Target = msg.From,
-      Action = "ArweaveQuery.Registered",
+      Action = "BlinkBlog.Registered",
       Data = "Successfully Registered."
     })
     print("Registered " .. Name)

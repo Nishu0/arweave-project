@@ -10,6 +10,8 @@ import "@fontsource/inter";
 import Question from "./pages/Question.jsx";
 import View from "./pages/View.jsx";
 import Create from "./pages/Create.jsx";
+import ViewPost from "./pages/ViewPost.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/view",
     element: <View />,
+  },
+  {
+    path: "/view/:postId",
+    element: <ViewPost />,
   },
   {
     path: "/create",

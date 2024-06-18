@@ -13,14 +13,14 @@ const Header = () => {
     },
   ];
   return (
-    <header className="bg-white py-2 px-4 flex justify-between items-center shadow-md z-10">
-      <Link to="/" className="text-black no-underline">
-        <h1 className="m-0 text-2xl font-bold text-black">ArweaveQuery</h1>
+    <header className="py-2 px-4 flex justify-between items-center shadow-md z-10">
+      <Link to="/" className="no-underline">
+        <h1 className="m-0 text-2xl font-bold">ArweaveQuery</h1>
       </Link>
       <div>
         {navLinks.map((link) => {
           return (
-            <Link key={link.title} to={link.path} className="text-black no-underline mx-2">
+            <Link key={link.title} to={link.path} className="no-underline mx-2">
               {link.title}
             </Link>
           );
