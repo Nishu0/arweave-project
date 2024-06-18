@@ -54,7 +54,7 @@ const Hero = () => {
             Hi! I&apos;m Nisarg Thakkar, a building a Community Q/A Platform on Arweave and for Arweave .
           </p>
 
-          <a href="#about">
+          <a href="/app">
             <MagicButton
               title="Go to App"
               icon={<FaLocationArrow />}

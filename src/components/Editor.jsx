@@ -6,7 +6,11 @@ import "react-quill/dist/quill.snow.css";
 
 const Editor = () => {
   const [draftContent, setDraftContent] = useState("");
+  const [errorContent,setErrorContent]= useState("");
+  const [codeContent,setCodeContent]= useState("");
   const [title, setTitle] = useState("");
+  const [discord, setDiscord] = useState("");
+  const [os, setOs] = useState("");
   const [isPosting, setIsPosting] = useState(false);
 
   const { connected } = useConnection();
@@ -29,8 +33,12 @@ const Editor = () => {
           { name: "Action", value: "Create-Post" },
           { name: "Content-Type", value: "text/html" },
           { name: "Title", value: title },
+          { name: "Discord", value: discord },
+          { name: "OS", value: os },
         ],
         data: draftContent,
+        error: errorContent,
+        code: codeContent,
         signer: createDataItemSigner(window.arweaveWallet),
       });
 
@@ -54,22 +62,65 @@ const Editor = () => {
 
   return (
     <form className="flex flex-col">
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-        className="mb-5 w-64 border-2 border-gray-300 rounded p-1"
-      />
+      <div className="grid grid-cols-3 gap-28">
+  <div>
+    <span className="text-lg mb-5 block">Add a title</span>
+    <input
+      type="text"
+      value={title}
+      onChange={(e) => setTitle(e.target.value)}
+      placeholder="Question Title"
+      className="mb-5 w-64 border-2 border-gray-300 rounded p-1 block"
+    />
+  </div>
+  <div>
+    <span className="text-lg mb-5 block">Discord user ID</span>
+    <input 
+      type="text"
+      value={discord}
+      onChange={(e) => setDiscord(e.target.value)}
+      placeholder="Discord User ID"
+      className="mb-5 w-64 border-2 border-gray-300 rounded p-1 block"
+    />
+  </div>
+  <div>
+    <span className="text-lg mb-5 block">OS</span>
+    <input 
+      type="text"
+      value={os}
+      onChange={(e) => setOs(e.target.value)}
+      placeholder="Operation System are you using?"
+      className="mb-5 w-64 border-2 border-gray-300 rounded p-1 block"
+    />
+  </div>
+</div>
+      <span className="text-lg">Describe your question in detail.</span>
+      <span className="text-xs mb-5">For example how do you get all transactions for a user?</span>
       <ReactQuill
         theme="snow"
         value={draftContent}
         onChange={setDraftContent}
-        className="mb-5"
+        className="mb-11"
+      />
+      <span className="text-lg mt-5">What error, if any, are you getting?</span>
+      <span className="text-xs mb-5">If there is no error, you can leave this field blank.</span>
+      <ReactQuill
+        theme="snow"
+        value={errorContent}
+        onChange={setErrorContent}
+        className="mb-11"
+      />
+      <span className="text-lg mt-5">What have you tried or looked at? Or how can we reproduce the error?</span>
+      <span className="text-xs mb-5">Code snippets are preferred</span>
+      <ReactQuill
+        theme="snow"
+        value={codeContent}
+        onChange={setCodeContent}
+        className="mb-11"
       />
       {isPosting && <div className="mb-5">Posting...</div>}
       <button
-        className="py-2 px-4 bg-black text-white border-none rounded cursor-pointer w-64 mt-5"
+        className="py-2 px-4 bg-black text-white border-none rounded-lg cursor-pointer w-64 mt-5 mb-5"
         type="submit"
         disabled={isPosting || (title === "" && draftContent === "")}
         onClick={(e) => createPost(e)}

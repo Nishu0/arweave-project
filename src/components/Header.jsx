@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const navLinks = [
     {
-      title: "View",
+      title: "View Posts",
       path: "/view",
     },
     {
-      title: "Create",
+      title: "Create Post",
       path: "/create",
     },
   ];
@@ -17,10 +17,10 @@ const Header = () => {
       <Link to="/" className="no-underline">
         <h1 className="m-0 text-2xl font-bold">ArweaveQuery</h1>
       </Link>
-      <div>
+      <div className="flex gap-10">
         {navLinks.map((link) => {
           return (
-            <Link key={link.title} to={link.path} className="no-underline mx-2">
+            <Link key={link.title} to={link.path} className="no-underline text-lg p-4 ">
               {link.title}
             </Link>
           );

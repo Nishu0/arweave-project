@@ -1,4 +1,4 @@
-Handlers.add("BlinkBlog.Register",
+Handlers.add("ArweaveQuery.Register",
   function (msg)
     return msg.Action == "Register"
   end,
@@ -18,14 +18,25 @@ Handlers.add("BlinkBlog.Register",
     ]], msg.From, Name))
     Send({
       Target = msg.From,
-      Action = "BlinkBlog.Registered",
+      Action = "ArweaveQuery.Registered",
       Data = "Successfully Registered."
     })
     print("Registered " .. Name)
   end 
 )
 
-Handlers.add("BlinkBlog.Post", 
+Handlers.add("ArweaveQuery.Authors",
+  function (msg)
+    return msg.Action == "AuthorList"
+  end,
+  function (msg)
+    local authors = dbAdmin:exec([[select * from Authors;]])
+    Send({Target = msg.From, Action = "ArweaveQuery.Authors", Data = require('json').encode(authors)})
+    print("Listing " .. #authors .. " authors")
+  end
+)
+
+Handlers.add("ArweaveQuery.Post", 
   function (msg) 
     return msg.Action == "Create-Post"
   end,
@@ -38,8 +49,8 @@ Handlers.add("BlinkBlog.Post",
     if author then
       -- add message
       dbAdmin:exec(string.format([[
-        INSERT INTO Posts (ID, PID, Title, Body) VALUES ("%s", "%s", "%s", "%s");
-      ]], msg.Id, author.PID, msg.Title, msg.Data ))
+        INSERT INTO Posts (ID, PID, Title, Discord, OS, Body, Error, Code) VALUES ("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s");
+      ]], msg.Id, author.PID, msg.Title, msg.Discord, msg.OS, msg.Data, msg.Error, msg.Code))
       Send({Target = msg.From, Data = "Article Posted."})
       print("New Question Posted")
       return "ok"
@@ -50,25 +61,25 @@ Handlers.add("BlinkBlog.Post",
   end
 )
 
-Handlers.add("BlinkBlog.Posts", function (msg)
+Handlers.add("ArweaveQuery.Posts", function (msg)
   return msg.Action == "List"
 end,
 function (msg)
   local posts = dbAdmin:exec([[
-    select p.ID, p.Title, a.Name as "Author" from Posts p LEFT OUTER JOIN Authors a ON p.PID = a.PID;
+    select p.ID, p.Title, p.Discord, a.Name as "Author" from Posts p LEFT OUTER JOIN Authors a ON p.PID = a.PID;
   ]])
   print("Listing " .. #posts .. " posts")
-  Send({Target = msg.From, Action = "BlinkBlog.Posts", Data = require('json').encode(posts)})
+  Send({Target = msg.From, Action = "ArweaveQuery.Posts", Data = require('json').encode(posts)})
 end
 )
 
-Handlers.add("BlinkBlog.Get",
+Handlers.add("ArweaveQuery.Get",
 function (msg) 
   return msg.Action == "Get"
 end,
 function (msg) 
   local post = dbAdmin:exec(string.format([[
-    SELECT p.ID, p.Title, a.Name as "Author", p.Body FROM Posts p LEFT OUTER JOIN Authors a ON p.PID = a.PID WHERE p.ID = "%s";
+    SELECT p.ID, p.Title, p.Discord, a.Name as "Author", p.Body, p.Error, p.Code FROM Posts p LEFT OUTER JOIN Authors a ON p.PID = a.PID WHERE p.ID = "%s";
   ]], msg['Post-Id']))
   Send({Target = msg.From, Action = "Get-Response", Data = require('json').encode(post)})
   print(post)

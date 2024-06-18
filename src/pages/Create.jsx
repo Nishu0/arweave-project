@@ -11,14 +11,16 @@ import Editor from "../components/Editor";
 
 const Create = () => {
   const { connected } = useConnection();
-  const processId = "5iK7nXtoUMWNCDtiOpwf75_ppw0v4LwusumyqiQdPq8";
+  const processId = "9aGueINd4SC0y0B7J15LbIUoV_nXMw4V57AQnSEiqLo";
   const [isFetching, setIsFetching] = useState(false);
   const [authorList, setAuthorList] = useState([]);
 
   const activeAddress = useActiveAddress();
 
   const syncAllAuthors = async () => {
+    console.log("Syncing all authors");
     if (!connected) {
+      console.log("Not connected to the network");
       // setIsFetching(false);
       return;
     }
@@ -61,7 +63,7 @@ const Create = () => {
 
     console.log("Registered successfully", registerResult);
 
-    if (registerResult[0].Messages[0].Data === "Successfully Registered.") {
+    if (registerResult[0].Output[0].Data === "Registered user") {
       syncAllAuthors();
     }
   };
@@ -82,7 +84,7 @@ const Create = () => {
     <main>
       <Header />
       <div className="h-[calc(100vh-72px)] flex flex-col p-10">
-        <h2>Welcome to create</h2>
+        <h2 className="text-center text-3xl">Welcome to ArweaveQuery</h2>
         {isFetching && <div>Fetching posts...</div>}
         <hr className="border-0 clear-both w-full bg-gray-300 h-px my-4" />
         {authorList.some((author) => author.PID === activeAddress) ? (

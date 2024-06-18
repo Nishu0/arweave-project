@@ -58,7 +58,12 @@ const ViewPost = () => {
             </button>
           </Link>
           <hr className="border-0 w-full bg-gray-300 h-px my-4" />
-          <ReactQuill value={postContent.Body} readOnly theme="bubble" />
+          <span>Question in detail:</span>
+          <ReactQuill value={postContent.Body} readOnly theme="bubble" className="text-xl" />
+          <span>Error</span>
+          <ReactQuill value={postContent.Error} readOnly theme="bubble" />
+          <span>Code</span>
+          <ReactQuill value={postContent.Code} readOnly theme="bubble" />
         </div>
       )}
     </main>
