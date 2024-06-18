@@ -5,6 +5,8 @@ import { ArweaveWalletKit } from "@arweave-wallet-kit/react";
 import ArConnectStrategy from "@arweave-wallet-kit/arconnect-strategy";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
+import {ThemeProvider} from "./components/theme-provider.jsx"
+import "@fontsource/inter";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
     <ArweaveWalletKit
       config={{
         permissions: [
@@ -30,5 +33,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     >
       <RouterProvider router={router} />
     </ArweaveWalletKit>
+    </ThemeProvider>
   </React.StrictMode>
 );
