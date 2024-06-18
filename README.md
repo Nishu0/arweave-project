@@ -1,8 +1,13 @@
-# React + Vite
+# ArweaveQuery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A project for the Arweave India Hacker House Dev and Design by Nisarg Thakkar
 
-Currently, two official plugins are available:
+### How to Connect dbAdmin and Create Tables in AOS Terminal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![EXAMPLE](./public/Smart_Contract_Running.png)
+
+### How to Execute Handlers Logic with AOS Terminal 
+
+![EXAMPLE](./public/Smart_Contract_Running_2.png)
+
+Output Post Link for the Gateway:: https://g8way.io/hJhkjV7S69KQtQASb83G2H3FQnhtIlx8EShsOwbpEpY
