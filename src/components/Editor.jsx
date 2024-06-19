@@ -32,12 +32,12 @@ const Editor = () => {
         process: processId,
         tags: [
           { name: "Action", value: "Create-Post" },
-          { name: "Content-Type", value: "text/html/json" },
+          { name: "Content-Type", value: "text/html" },
           { name: "Title", value: title },
           {name:"Discord", value: discord},
           {name:"OS", value: os},
           {name:"Error", value: errorContent},
-          {name:"Code", value: JSON.stringify(codeContent)}
+          {name:"Code", value: codeContent}
         ],
         data: draftContent,
         signer: createDataItemSigner(window.arweaveWallet),
@@ -116,7 +116,7 @@ const Editor = () => {
         className="mb-11"
       />
       <span className="text-lg mt-5">What have you tried or looked at? Or how can we reproduce the error?</span>
-      <span className="text-xs mb-5">Write Text only how to reproduce error?</span>
+      <span className="text-xs mb-5">Github Link/Code Link</span>
       <ReactQuill
         theme="snow"
         value={codeContent}
