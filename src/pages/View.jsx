@@ -51,12 +51,22 @@ const View = () => {
           postList.map((post, index) => (
             <div
               key={index}
-              className="p-5 border border-gray-300 rounded-lg flex flex-col gap-1.5 mb-2.5"
+              className="p-5 border border-gray-300 rounded-lg flex flex-col gap-1.5 mb-4 bg-white shadow-md"
             >
-              <a href={`/view/${post.ID}`} className="no-underline text-gray-700">
-                <h3 className="m-0 p-0">{post.Title}</h3>
-                <p className="m-0 p-0 text-gray-600 text-sm">{post.Author}</p>
-                <p className="m-0 p-0 text-gray-600 text-sm">{post.ID}</p>
+              <a href={`/view/${post.ID}`} className="m-0 p-0 text-blue-600">
+              <h3 className="m-0 p-0 text-xl font-semibold text-gray-900">
+                {post.Title}
+              </h3>
+              <a
+                href={`https://discord.com/users/${post.Discord}`}
+                className="m-0 p-0 text-blue-600 text-sm"
+              >
+                Discord: {post.Discord}
+              </a>
+              <span className="block">
+                Author: {post.Author}
+              </span>
+              
               </a>
             </div>
           ))}

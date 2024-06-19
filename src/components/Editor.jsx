@@ -19,6 +19,7 @@ const Editor = () => {
   const createPost = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log(title, discord, os,draftContent, errorContent, codeContent);
 
     if (!connected) {
       return;
@@ -33,12 +34,12 @@ const Editor = () => {
           { name: "Action", value: "Create-Post" },
           { name: "Content-Type", value: "text/html" },
           { name: "Title", value: title },
-          { name: "Discord", value: discord },
-          { name: "OS", value: os },
         ],
-        data: draftContent,
-        error: errorContent,
-        code: codeContent,
+        Discord: discord,
+        OS: os,
+        Data: draftContent,
+        Error: errorContent,
+        Code: codeContent,
         signer: createDataItemSigner(window.arweaveWallet),
       });
 
@@ -53,6 +54,10 @@ const Editor = () => {
 
       setDraftContent("");
       setTitle("");
+      setDiscord("");
+      setOs("");
+      setErrorContent("");
+      setCodeContent("");
     } catch (error) {
       console.log(error);
     }
@@ -122,7 +127,7 @@ const Editor = () => {
       <button
         className="py-2 px-4 bg-black text-white border-none rounded-lg cursor-pointer w-64 mt-5 mb-5"
         type="submit"
-        disabled={isPosting || (title === "" && draftContent === "")}
+        disabled={isPosting || (title === "" && draftContent === "" && errorContent === "" && codeContent === "" && discord === "" && os === "")}
         onClick={(e) => createPost(e)}
       >
         Create Post

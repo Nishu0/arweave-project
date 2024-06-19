@@ -66,7 +66,7 @@ Handlers.add("ArweaveQuery.Posts", function (msg)
 end,
 function (msg)
   local posts = dbAdmin:exec([[
-    select p.ID, p.Title, p.Discord, a.Name as "Author" from Posts p LEFT OUTER JOIN Authors a ON p.PID = a.PID;
+    select p.ID, p.Title, p.Discord, p.Body, a.Name as "Author" from Posts p LEFT OUTER JOIN Authors a ON p.PID = a.PID;
   ]])
   print("Listing " .. #posts .. " posts")
   Send({Target = msg.From, Action = "ArweaveQuery.Posts", Data = require('json').encode(posts)})
