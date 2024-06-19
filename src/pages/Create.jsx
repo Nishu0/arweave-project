@@ -49,7 +49,7 @@ const Create = () => {
   const registerAuthor = async () => {
     const res = await message({
       process: processId,
-      tags: [{ name: "Action", value: "Register" }],
+      tags: [{ name: "Action", value: "Register-User" }],
       data: "",
       signer: createDataItemSigner(window.arweaveWallet),
     });

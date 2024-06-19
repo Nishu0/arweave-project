@@ -1,6 +1,6 @@
 Handlers.add("ArweaveQuery.Register",
   function (msg)
-    return msg.Action == "Register"
+    return msg.Action == "Register-User"
   end,
   function (msg)
     -- get author count to make sure author is not already registered
@@ -47,6 +47,8 @@ Handlers.add("ArweaveQuery.Post",
     ]], msg.From))[1] 
     
     if author then
+      print("Author found:", author)
+      
       -- add message
       dbAdmin:exec(string.format([[
         INSERT INTO Posts (ID, PID, Title, Discord, OS, Body, Error, Code) VALUES ("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s");

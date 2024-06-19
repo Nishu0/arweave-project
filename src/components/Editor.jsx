@@ -14,7 +14,7 @@ const Editor = () => {
   const [isPosting, setIsPosting] = useState(false);
 
   const { connected } = useConnection();
-  const processId = "5iK7nXtoUMWNCDtiOpwf75_ppw0v4LwusumyqiQdPq8";
+  const processId = "9aGueINd4SC0y0B7J15LbIUoV_nXMw4V57AQnSEiqLo";
 
   const createPost = async (e) => {
     e.preventDefault();
@@ -32,14 +32,14 @@ const Editor = () => {
         process: processId,
         tags: [
           { name: "Action", value: "Create-Post" },
-          { name: "Content-Type", value: "text/html" },
+          { name: "Content-Type", value: "text/html/json" },
           { name: "Title", value: title },
+          {name:"Discord", value: discord},
+          {name:"OS", value: os},
+          {name:"Error", value: errorContent},
+          {name:"Code", value: JSON.stringify(codeContent)}
         ],
-        Discord: discord,
-        OS: os,
-        Data: draftContent,
-        Error: errorContent,
-        Code: codeContent,
+        data: draftContent,
         signer: createDataItemSigner(window.arweaveWallet),
       });
 
@@ -116,7 +116,7 @@ const Editor = () => {
         className="mb-11"
       />
       <span className="text-lg mt-5">What have you tried or looked at? Or how can we reproduce the error?</span>
-      <span className="text-xs mb-5">Code snippets are preferred</span>
+      <span className="text-xs mb-5">Write Text only how to reproduce error?</span>
       <ReactQuill
         theme="snow"
         value={codeContent}
