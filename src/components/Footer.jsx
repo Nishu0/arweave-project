@@ -32,6 +32,14 @@ const Footer = () => {
           />
         </a>
       </div>
+      <div className="py-20 flex w-full items-center">
+        <div>
+        <h1 className="heading flex flex-col items-center text-white mb-5">
+          <span className="text-purple">Demo of ArweaveQuery </span>
+        </h1>
+            <video src="https://res.cloudinary.com/dyk5s8gbw/video/upload/v1718808154/cc0t77oglufnknyaudlf.mp4" autoplay loop controls className="w-full h-full rounded-lg shadow-lg" />
+            </div>
+        </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
         <p className="md:text-base text-sm md:font-normal font-light text-white">
           Copyright © 2024 Nisarg Thakkar
